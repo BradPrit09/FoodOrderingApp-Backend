@@ -1,0 +1,22 @@
+server:
+  servlet:
+    port: 8080
+    contextPath: /api
+
+spring:
+
+  application:
+    name: FoodOrderingApp-api
+
+  datasource:
+    driverClassName: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5432/restaurantdb
+    username: postgres
+    password: password
+
+  jpa:
+    properties:
+      hibernate:
+        temp:
+          use_jdbc_metadata_defaults: false
+    database-platform: org.hibernate.dialect.PostgreSQL9Dialect
