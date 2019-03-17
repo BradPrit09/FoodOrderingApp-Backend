@@ -7,7 +7,6 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="FoodOrderingApp-api" />
-        <module name="FoodOrderingApp-db" />
         <module name="FoodOrderingApp-service" />
       </profile>
     </annotationProcessing>

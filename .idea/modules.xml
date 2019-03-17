@@ -3,7 +3,6 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/FoodOrderingApp-api/FoodOrderingApp-api.iml" filepath="$PROJECT_DIR$/FoodOrderingApp-api/FoodOrderingApp-api.iml" />
-      <module fileurl="file://$PROJECT_DIR$/FoodOrderingApp-db/FoodOrderingApp-db.iml" filepath="$PROJECT_DIR$/FoodOrderingApp-db/FoodOrderingApp-db.iml" />
       <module fileurl="file://$PROJECT_DIR$/FoodOrderingApp-service/FoodOrderingApp-service.iml" filepath="$PROJECT_DIR$/FoodOrderingApp-service/FoodOrderingApp-service.iml" />
       <module fileurl="file://$PROJECT_DIR$/FoodOrderingAppBackend.iml" filepath="$PROJECT_DIR$/FoodOrderingAppBackend.iml" />
     </modules>

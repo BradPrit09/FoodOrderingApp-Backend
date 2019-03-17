@@ -54,7 +54,7 @@
 
     <modules>
         <module>FoodOrderingApp-api</module>
-        <module>FoodOrderingApp-db</module>
+        <!--<module>FoodOrderingApp-db</module>-->
         <module>FoodOrderingApp-service</module>
     </modules>
 
