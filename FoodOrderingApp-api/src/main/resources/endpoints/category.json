@@ -11,7 +11,7 @@
     "https"
   ],
   "basePath": "/api",
-  "tags":  [
+  "tags": [
     {
       "name": "API#001 Category",
       "description": "All operations marked with 'API#001 Category' are relevant to the category use case"

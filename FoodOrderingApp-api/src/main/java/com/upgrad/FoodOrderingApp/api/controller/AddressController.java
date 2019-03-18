@@ -3,6 +3,7 @@ package com.upgrad.FoodOrderingApp.api.controller;
 
 import com.upgrad.FoodOrderingApp.api.model.*;
 import com.upgrad.FoodOrderingApp.service.businness.AddressService;
+import com.upgrad.FoodOrderingApp.service.businness.CustomerAddressService;
 import com.upgrad.FoodOrderingApp.service.businness.CustomerService;
 import com.upgrad.FoodOrderingApp.service.businness.StateService;
 import com.upgrad.FoodOrderingApp.service.entity.Address;
@@ -32,6 +33,7 @@ import java.util.UUID;
 @RequestMapping("/")
 public class AddressController {
 
+    private static final String ADDRESS_DELETED_SUCCESSFULLY = "ADDRESS DELETED SUCCESSFULLY";
     @Autowired
     private AddressService addressService;
 
@@ -40,6 +42,9 @@ public class AddressController {
 
     @Autowired
     private StateService stateService;
+
+    @Autowired
+    CustomerAddressService customerAddressService;
 
     /**
      * Rest Endpoint method implementation used for signing up customer with all details.
@@ -109,6 +114,87 @@ public class AddressController {
         response = new AddressListResponse().addresses(listAddress);
 
         return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+
+    /**
+     * Rest Endpoint method implementation used for deleting address by address id.
+     * Only logged-in user who is owner of the address is allowed to delete a address
+     *
+     */
+    /**
+     * @param addressId   address id in string
+     * @param accessToken accesstoken for the customer
+     * @return Delete response with appropriate ahhtp status
+     */
+    @RequestMapping(method = RequestMethod.DELETE, path = "/address/{address_id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<DeleteAddressResponse> addressDelete(@PathVariable("address_id") final String addressId, @RequestHeader("authorization") final String accessToken) {
+        DeleteAddressResponse response = null;
+        CustomerEntity customerEntity = null;
+        Address address = null;
+
+        //Check if customer is authenticated for the operation
+        try {
+            CustomerAuthEntity customerAuthEntity = customerService.getCustomerAuthEntity(accessToken);
+            customerEntity = customerAuthEntity.getCustomer();
+        } catch (AuthorizationFailedException e) {
+            response = new DeleteAddressResponse().status(e.getCode() + " " + e.getErrorMessage());
+            return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+        }
+
+        //Check whether the addressid field provided is empty
+        try {
+            checkAddresFiledforEmptiness(addressId);
+        } catch (AddressNotFoundException e) {
+            response = new DeleteAddressResponse().status(e.getCode() + " " + e.getErrorMessage());
+            return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+        }
+
+        //Check if address is present in db
+        try {
+            address = addressService.checkAddressPresent(addressId);
+        } catch (AddressNotFoundException e) {
+            response = new DeleteAddressResponse().status(e.getCode() + " " + e.getErrorMessage());
+            return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+        }
+
+
+        /**
+         * This block checks if there is a proper relationship between address and customer.
+         * Only then can the customer be allowed to delete the address details.
+         */
+
+        address.setUuid(addressId);
+        boolean isCustomerOwnerOfAddress = false;
+        try {
+            isCustomerOwnerOfAddress = customerAddressService.checkCustomerisOwnerOfAddress(address, customerEntity);
+        } catch (AuthorizationFailedException e) {
+            response = new DeleteAddressResponse().status(e.getCode() + " " + e.getErrorMessage());
+            return new ResponseEntity<>(response, HttpStatus.FORBIDDEN);
+        }
+
+        //if all validations are successful then go for deletion of the address
+        if (isCustomerOwnerOfAddress) {
+            addressService.deleteAddress(address);
+        }
+        response = new DeleteAddressResponse().status(ADDRESS_DELETED_SUCCESSFULLY).id(UUID.fromString(address.getUuid()));
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+
+
+
+    /**
+     * Method used for checking if the addressid field sent from the client is empty
+     * If yes throw exception
+     *
+     * @param addressId uuid field
+     * @throws AddressNotFoundException exception
+     */
+    private void checkAddresFiledforEmptiness(String addressId) throws AddressNotFoundException {
+        if (addressId.trim().isEmpty()) {
+            throw new AddressNotFoundException("ANF-005", "Address id can not be empty");
+        }
     }
 
 

@@ -11,7 +11,9 @@ import javax.validation.constraints.NotNull;
 @Entity
 @Table(name = "customer_address", schema = "public")
 @NamedQueries({
-        @NamedQuery(name = "addressForCustomer", query = "select c from CustomerAddress as c where c.customer.uuid=:uuid")
+        @NamedQuery(name = "addressForCustomer", query = "select c from CustomerAddress as c where c.customer.uuid=:uuid"),
+        @NamedQuery(name = "checkCustomerAddress", query = "select c from CustomerAddress as c where c.customer.uuid=:customeruuid and c.address.uuid =:addressuuid")
+
 })
 public class CustomerAddress {
 

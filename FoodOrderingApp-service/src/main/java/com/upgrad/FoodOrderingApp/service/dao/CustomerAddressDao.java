@@ -16,6 +16,7 @@ import java.util.List;
 public class CustomerAddressDao {
 
     private static final String ADDRESS_FOR_CUSTOMER = "addressForCustomer";
+    private static final String CHECK_CUSTOMER_ADDRESS = "checkCustomerAddress";
     @PersistenceContext
     private EntityManager entityManager;
 
@@ -45,4 +46,22 @@ public class CustomerAddressDao {
     }
 
 
+    /**
+     * Method used for checking if the customer uuid and address uuid have a mapping in the customerAddress table.
+     * If yes then the customer is the owner of the address
+     *
+     * @param addressUUID  address uuid
+     * @param customerUUID customer uuid
+     * @return CustomerAddress instance
+     */
+    public CustomerAddress checkCustomerisOwnerOfAddress(String addressUUID, String customerUUID) {
+        try {
+            return entityManager.createNamedQuery(CHECK_CUSTOMER_ADDRESS, CustomerAddress.class)
+                    .setParameter("customeruuid", customerUUID)
+                    .setParameter("addressuuid", addressUUID)
+                    .getSingleResult();
+        } catch (NoResultException nre) {
+            return null;
+        }
+    }
 }

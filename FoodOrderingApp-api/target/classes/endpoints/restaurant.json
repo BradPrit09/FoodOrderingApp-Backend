@@ -542,13 +542,13 @@
       },
       "description": "Restaurant details"
     },
-    "RestaurantUpdatedResponse":{
+    "RestaurantUpdatedResponse": {
       "type": "object",
       "properties": {
         "id": {
-            "type": "string",
-            "format": "uuid",
-            "description": "Unique identifier of the restaurant in a standard UUID format"
+          "type": "string",
+          "format": "uuid",
+          "description": "Unique identifier of the restaurant in a standard UUID format"
         },
         "status": {
           "type": "string",

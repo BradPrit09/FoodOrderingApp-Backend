@@ -389,7 +389,7 @@
           "type": "integer",
           "description": "Quantity of item ordered"
         },
-        "price":{
+        "price": {
           "type": "integer",
           "description": "Total price of the item"
         }
@@ -578,7 +578,7 @@
           "type": "integer",
           "description": "Quantity of item ordered"
         },
-        "price":{
+        "price": {
           "type": "integer",
           "description": "Total price of the item"
         }
