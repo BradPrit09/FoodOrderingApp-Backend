@@ -182,6 +182,36 @@ public class AddressController {
     }
 
 
+    /**
+     * Rest Endpoint method implementation used for signing up customer with all details.
+     *
+     * @return ResponseEntity containing user response
+     * @throws SignUpRestrictedException exception thrown in case username of email id are same.
+     */
+    @RequestMapping(method = RequestMethod.GET, path = "/states", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+    public ResponseEntity<StatesListResponse> getAllStates() {
+        List<StateEntity> stateList = addressService.getAllStates();
+        List<StatesList> responseStateList = converttoStateList(stateList);
+        StatesListResponse response = new StatesListResponse().states(responseStateList);
+        return new ResponseEntity<>(response, HttpStatus.OK);
+    }
+
+    /**
+     * Method used for converting StateEntity list to StateList for ending it to response
+     *
+     * @param stateList list of state
+     * @return List of StateList
+     */
+    private List<StatesList> converttoStateList(List<StateEntity> stateList) {
+        List<StatesList> stateValueList = new ArrayList<>();
+        for (StateEntity entityObject : stateList) {
+            StatesList statesListObj = new StatesList();
+            statesListObj.setId(UUID.fromString(entityObject.getUuid()));
+            statesListObj.setStateName(entityObject.getStateName());
+            stateValueList.add(statesListObj);
+        }
+        return stateValueList;
+    }
 
 
     /**
