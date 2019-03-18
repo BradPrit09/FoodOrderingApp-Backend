@@ -5,6 +5,7 @@ import com.upgrad.FoodOrderingApp.service.dao.CustomerAddressDao;
 import com.upgrad.FoodOrderingApp.service.entity.Address;
 import com.upgrad.FoodOrderingApp.service.entity.CustomerAddress;
 import com.upgrad.FoodOrderingApp.service.entity.CustomerEntity;
+import com.upgrad.FoodOrderingApp.service.entity.StateEntity;
 import com.upgrad.FoodOrderingApp.service.exception.AddressNotFoundException;
 import com.upgrad.FoodOrderingApp.service.exception.SaveAddressException;
 import com.upgrad.FoodOrderingApp.service.util.PinCodeValidator;
@@ -13,6 +14,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
+import javax.swing.plaf.nimbus.State;
 import java.util.List;
 
 @Service
@@ -26,6 +28,9 @@ public class AddressService {
 
     @Autowired
     private CustomerAddressDao customerAddressDao;
+
+    @Autowired
+    StateService stateService;
 
     /**
      * Method used for saving address to database
@@ -119,5 +124,14 @@ public class AddressService {
      */
     public void deleteAddress(Address deleteAddress) {
         addressDao.deleteAddress(deleteAddress);
+    }
+
+    /**
+     * Method used for getting all state data
+     *
+     * @return
+     */
+    public List<StateEntity> getAllStates() {
+        return stateService.getAllStates();
     }
 }

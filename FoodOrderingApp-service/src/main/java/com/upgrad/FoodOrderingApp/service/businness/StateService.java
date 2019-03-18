@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import javax.validation.constraints.NotNull;
+import java.util.List;
 
 @Service
 public class StateService {
@@ -30,5 +31,14 @@ public class StateService {
             throw new AddressNotFoundException("ANF-002", "No stateEntity by this id");
         }
         return stateEntity;
+    }
+
+    /**
+     * Method used for getting all states from State table
+     *
+     * @return List of states
+     */
+    public List<StateEntity> getAllStates() {
+        return stateDao.getAllStates();
     }
 }
