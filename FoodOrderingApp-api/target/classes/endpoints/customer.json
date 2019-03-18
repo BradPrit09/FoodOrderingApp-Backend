@@ -518,7 +518,6 @@
         "password"
       ]
     },
-
     "SignupCustomerResponse": {
       "type": "object",
       "properties": {

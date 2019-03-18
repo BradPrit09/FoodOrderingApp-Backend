@@ -123,15 +123,16 @@ public class AddressController {
      *
      */
     /**
-     * @param addressId
-     * @param accessToken
-     * @return
+     * @param addressId   address id in string
+     * @param accessToken accesstoken for the customer
+     * @return Delete response with appropriate ahhtp status
      */
     @RequestMapping(method = RequestMethod.DELETE, path = "/address/{address_id}", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<DeleteAddressResponse> addressDelete(@PathVariable("addressId") final String addressId, @RequestHeader("authorization") final String accessToken) {
+    public ResponseEntity<DeleteAddressResponse> addressDelete(@PathVariable("address_id") final String addressId, @RequestHeader("authorization") final String accessToken) {
         DeleteAddressResponse response = null;
         CustomerEntity customerEntity = null;
         Address address = null;
+
         //Check if customer is authenticated for the operation
         try {
             CustomerAuthEntity customerAuthEntity = customerService.getCustomerAuthEntity(accessToken);
@@ -179,6 +180,8 @@ public class AddressController {
         response = new DeleteAddressResponse().status(ADDRESS_DELETED_SUCCESSFULLY).id(UUID.fromString(address.getUuid()));
         return new ResponseEntity<>(response, HttpStatus.OK);
     }
+
+
 
 
     /**
