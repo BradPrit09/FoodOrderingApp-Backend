@@ -11,6 +11,9 @@ import javax.validation.constraints.Size;
  */
 @Entity
 @Table(name = "address", schema = "public")
+@NamedQueries({
+        @NamedQuery(name = "checkAddressAvailable", query = "select a from Address as a where a.uuid=:uuid")
+})
 public class Address {
 
     @Id

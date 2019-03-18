@@ -5,6 +5,7 @@ import com.upgrad.FoodOrderingApp.service.dao.CustomerAddressDao;
 import com.upgrad.FoodOrderingApp.service.entity.Address;
 import com.upgrad.FoodOrderingApp.service.entity.CustomerAddress;
 import com.upgrad.FoodOrderingApp.service.entity.CustomerEntity;
+import com.upgrad.FoodOrderingApp.service.exception.AddressNotFoundException;
 import com.upgrad.FoodOrderingApp.service.exception.SaveAddressException;
 import com.upgrad.FoodOrderingApp.service.util.PinCodeValidator;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -85,8 +86,8 @@ public class AddressService {
     /**
      * Method to save customer and address relation in Customer and address table
      *
-     * @param address address Entity object
-     * @param customer      customer Entity object
+     * @param address  address Entity object
+     * @param customer customer Entity object
      */
     @Transactional(propagation = Propagation.REQUIRED)
     public void saveCustomerAddress(Address address, CustomerEntity customer) {
@@ -94,5 +95,29 @@ public class AddressService {
         custAddress.setAddress(address);
         custAddress.setCustomer(customer);
         customerAddressDao.saveCustomerAddress(custAddress);
+    }
+
+    /**
+     * Method used for checking if the address is present in db
+     *
+     * @param addressId address uuid
+     */
+    @Transactional(propagation = Propagation.REQUIRED)
+    public Address checkAddressPresent(String addressId) throws AddressNotFoundException {
+        Address address = addressDao.checkAddressPresent(addressId);
+        if (address == null) {
+            throw new AddressNotFoundException("ANF-003", "No address by this id");
+        } else {
+            return address;
+        }
+    }
+
+    /**
+     * Method used for deleting address from database
+     *
+     * @param deleteAddress address to be deleted
+     */
+    public void deleteAddress(Address deleteAddress) {
+        addressDao.deleteAddress(deleteAddress);
     }
 }
