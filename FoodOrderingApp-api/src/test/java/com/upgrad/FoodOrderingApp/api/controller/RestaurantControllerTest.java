@@ -194,7 +194,7 @@ public class RestaurantControllerTest {
     @Test
     public void shouldNotGetRestaurantByCategoryidIfCategoryIdIsEmpty() throws Exception {
         when(mockRestaurantService.restaurantByCategory(anyString()))
-                .thenThrow(new CategoryNotFoundException("CNF-001", "Category id field should not be empty"));
+                .thenThrow(new CategoryNotFoundException("CNF-001", "CategoryEntity id field should not be empty"));
 
         mockMvc
                 .perform(get("/restaurant/category/emptyString").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))

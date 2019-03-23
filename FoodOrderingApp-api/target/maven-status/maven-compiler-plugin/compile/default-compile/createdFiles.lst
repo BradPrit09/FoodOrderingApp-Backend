@@ -26,6 +26,7 @@ com/upgrad/FoodOrderingApp/api/config/SwaggerConfiguration.class
 com/upgrad/FoodOrderingApp/api/controller/Example.class
 com/upgrad/FoodOrderingApp/api/model/ItemQuantityResponse.class
 io/swagger/configuration/SwaggerDocumentationConfig.class
+com/upgrad/FoodOrderingApp/api/controller/RestaurantController.class
 com/upgrad/FoodOrderingApp/api/model/UpdatePasswordResponse.class
 com/upgrad/FoodOrderingApp/api/model/OrderListCustomer.class
 com/upgrad/FoodOrderingApp/api/model/RestaurantDetailsResponse.class

@@ -1,13 +1,15 @@
 package com.upgrad.FoodOrderingApp.service.entity;
 
 
+import org.springframework.lang.NonNull;
+
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 @Entity
-@Table(name = "payment", schema = "public")
-public class PaymentEntity {
+@Table(name = "coupon", schema = "public")
+public class Coupon {
 
     @Id
     @Column(name = "id")
@@ -19,9 +21,16 @@ public class PaymentEntity {
     @NotNull
     private String uuid;
 
-    @Column(name = "payment_name")
+
+    @Column(name = "coupon_name")
     @Size(max = 255)
-    private String paymentName;
+    @NotNull
+    private String couponName;
+
+
+    @Column(name = "percent")
+    @NotNull
+    private Integer percent;
 
 
     public Integer getId() {
@@ -40,11 +49,19 @@ public class PaymentEntity {
         this.uuid = uuid;
     }
 
-    public String getPaymentName() {
-        return paymentName;
+    public String getCouponName() {
+        return couponName;
     }
 
-    public void setPaymentName(String paymentName) {
-        this.paymentName = paymentName;
+    public void setCouponName(String couponName) {
+        this.couponName = couponName;
+    }
+
+    public Integer getPercent() {
+        return percent;
+    }
+
+    public void setPercent(Integer percent) {
+        this.percent = percent;
     }
 }

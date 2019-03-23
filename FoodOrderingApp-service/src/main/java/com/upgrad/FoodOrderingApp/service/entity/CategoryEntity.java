@@ -1,13 +1,17 @@
 package com.upgrad.FoodOrderingApp.service.entity;
 
-
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
+import java.util.Set;
 
+/**
+ * Entity class for CategoryEntity table
+ */
 @Entity
-@Table(name = "payment", schema = "public")
-public class PaymentEntity {
+@Table(name = "category", schema = "public")
+public class CategoryEntity {
 
     @Id
     @Column(name = "id")
@@ -19,10 +23,13 @@ public class PaymentEntity {
     @NotNull
     private String uuid;
 
-    @Column(name = "payment_name")
+    @Column(name = "category_name")
     @Size(max = 255)
-    private String paymentName;
+    @NotNull
+    private String categoryName;
 
+    @ManyToMany(mappedBy = "categories")
+    private Set<RestaurantEntity> restaurantList;
 
     public Integer getId() {
         return id;
@@ -40,11 +47,11 @@ public class PaymentEntity {
         this.uuid = uuid;
     }
 
-    public String getPaymentName() {
-        return paymentName;
+    public String getCategoryName() {
+        return categoryName;
     }
 
-    public void setPaymentName(String paymentName) {
-        this.paymentName = paymentName;
+    public void setCategoryName(String categoryName) {
+        this.categoryName = categoryName;
     }
 }

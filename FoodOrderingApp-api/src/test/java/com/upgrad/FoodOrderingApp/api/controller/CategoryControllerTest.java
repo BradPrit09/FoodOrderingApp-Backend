@@ -78,7 +78,7 @@ public class CategoryControllerTest {
     @Test
     public void shouldNotGetCategoryByidIfCategoryIdIsEmpty() throws Exception {
         when(mockCategoryService.getCategoryById(anyString()))
-                .thenThrow(new CategoryNotFoundException("CNF-001", "Category id field should not be empty"));
+                .thenThrow(new CategoryNotFoundException("CNF-001", "CategoryEntity id field should not be empty"));
 
         mockMvc
                 .perform(get("/category/emptyString").contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
