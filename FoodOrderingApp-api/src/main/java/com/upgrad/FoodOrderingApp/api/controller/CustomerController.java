@@ -47,7 +47,7 @@ public class CustomerController {
      * @throws SignUpRestrictedException exception thrown in case username of email id are same.
      */
     @RequestMapping(method = RequestMethod.POST, path = "/customer/signup", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<SignupCustomerRequest> signUp(final SignupCustomerRequest signupUserRequest) throws SignUpRestrictedException {
+    public ResponseEntity<SignupCustomerRequest> signUp(final SignupCustomerRequest signupUserRequest) {
         //Set the customer entity object
         CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setUuid(UUID.randomUUID().toString());
@@ -57,7 +57,15 @@ public class CustomerController {
         customerEntity.setContactNumber(signupUserRequest.getContactNumber());
         customerEntity.setPassword(signupUserRequest.getPassword());
         //Pass the customer entity object for persisting in database.
-        CustomerEntity createdCustomerEntity = customerService.saveCustomer(customerEntity);
+
+        CustomerEntity createdCustomerEntity = null;
+        try {
+            createdCustomerEntity = customerService.saveCustomer(customerEntity);
+        } catch (SignUpRestrictedException e) {
+            SignupCustomerResponse customerResponse = new SignupCustomerResponse().id(e.getCode()).status(e.getErrorMessage());
+            return new ResponseEntity(customerResponse, HttpStatus.FORBIDDEN);
+        }
+
         SignupCustomerResponse customerResponse = new SignupCustomerResponse().id(createdCustomerEntity.getUuid()).status(CUSTOMER_SUCCESSFULLY_REGISTERED);
         return new ResponseEntity(customerResponse, HttpStatus.CREATED);
 
@@ -76,7 +84,7 @@ public class CustomerController {
      */
 
     @RequestMapping(method = RequestMethod.POST, path = "/customer/login", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<LoginResponse> signin(@RequestHeader final String authorization) throws AuthenticationFailedException {
+    public ResponseEntity<LoginResponse> signin(@RequestHeader final String authorization) {
         //TypeResolutionContext.Basic dXNlcm5hbWU6cGFzc3dvcmQ =
         //above is a sample encoded text where the username is "username" and password is "password" separated by a ":"
         byte[] decode = null;
@@ -120,7 +128,7 @@ public class CustomerController {
      * @throws AuthorizationFailedException exception thrown in case of no acess token found.
      */
     @RequestMapping(method = RequestMethod.POST, path = "/customer/logout", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<LogoutResponse> signout(@RequestHeader final String accessToken) throws AuthorizationFailedException {
+    public ResponseEntity<LogoutResponse> signout(@RequestHeader final String accessToken) {
         LogoutResponse signOutResponse = null;
         LogoutResponse errorResponse = null;
         CustomerEntity userEntity = null;
