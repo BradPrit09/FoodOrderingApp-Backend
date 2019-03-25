@@ -6,6 +6,7 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import java.math.BigDecimal;
 import java.time.ZonedDateTime;
+import java.util.List;
 
 /**
  * Entity object for Orders table
@@ -61,6 +62,19 @@ public class Orders {
     @NotNull
     private RestaurantEntity restaurant;
 
+    @ManyToMany
+    @JoinTable(name = "order_item",
+            joinColumns = @JoinColumn(name = "order_id"),
+            inverseJoinColumns = @JoinColumn(name = "item_id"))
+    private List<ItemEntity> items;
+
+    public List<ItemEntity> getItems() {
+        return items;
+    }
+
+    public void setItems(List<ItemEntity> items) {
+        this.items = items;
+    }
 
     public Integer getId() {
         return id;

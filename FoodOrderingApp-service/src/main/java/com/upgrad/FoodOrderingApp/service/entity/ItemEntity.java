@@ -5,6 +5,7 @@ import org.springframework.lang.NonNull;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * Entity class for Item table
@@ -36,6 +37,29 @@ public class ItemEntity {
     @NotNull
     @Size(max = 10)
     private String type;
+
+    @ManyToMany(mappedBy = "itemList")
+    private List<CategoryEntity> categories;
+
+    @ManyToMany(mappedBy = "items")
+    private List<Orders> orders;
+
+
+    public List<CategoryEntity> getCategories() {
+        return categories;
+    }
+
+    public void setCategories(List<CategoryEntity> categories) {
+        this.categories = categories;
+    }
+
+    public List<Orders> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<Orders> orders) {
+        this.orders = orders;
+    }
 
     public Integer getId() {
         return id;
