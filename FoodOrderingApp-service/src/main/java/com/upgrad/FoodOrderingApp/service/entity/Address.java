@@ -4,6 +4,7 @@ package com.upgrad.FoodOrderingApp.service.entity;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 /**
  * This class is used for mapping all columns of table Address.
@@ -46,6 +47,17 @@ public class Address {
     @NotNull
     @JoinColumn(name = "state_id")
     private StateEntity stateEntity;
+
+    @ManyToMany(mappedBy = "addresses")
+    private List<CustomerEntity> customers;
+
+    public List<CustomerEntity> getCustomers() {
+        return customers;
+    }
+
+    public void setCustomers(List<CustomerEntity> customers) {
+        this.customers = customers;
+    }
 
     public Integer getId() {
         return id;

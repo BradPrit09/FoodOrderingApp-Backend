@@ -76,7 +76,7 @@ public class AddressController {
                 //Authenticate the user with access Token
                 customerService.getCustomerAuthEntity(accessToken);
                 address = addressService.saveAddress(address);
-                //Save the relattion of customer and address in Customer and address table as well
+                //Save the relation of customer and address in Customer and address table as well
                 addressService.saveCustomerAddress(address, authEntity.getCustomer());
             }
         } catch (AddressNotFoundException e) {
