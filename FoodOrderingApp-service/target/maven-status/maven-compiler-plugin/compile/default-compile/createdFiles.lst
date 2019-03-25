@@ -2,6 +2,7 @@ com/upgrad/FoodOrderingApp/service/entity/PaymentEntity.class
 com/upgrad/FoodOrderingApp/service/entity/StateEntity.class
 com/upgrad/FoodOrderingApp/service/exception/CouponNotFoundException.class
 com/upgrad/FoodOrderingApp/service/businness/StateService.class
+com/upgrad/FoodOrderingApp/service/businness/ItemService.class
 com/upgrad/FoodOrderingApp/service/exception/SaveAddressException.class
 com/upgrad/FoodOrderingApp/service/entity/RestaurantCategoryEntity.class
 com/upgrad/FoodOrderingApp/service/businness/PasswordCryptographyProvider.class
@@ -14,6 +15,8 @@ com/upgrad/FoodOrderingApp/service/exception/AuthenticationFailedException.class
 com/upgrad/FoodOrderingApp/service/entity/Address.class
 com/upgrad/FoodOrderingApp/service/exception/SignUpRestrictedException.class
 com/upgrad/FoodOrderingApp/service/entity/ItemEntity.class
+com/upgrad/FoodOrderingApp/service/dao/CategoryDao.class
+com/upgrad/FoodOrderingApp/service/businness/CategoryService.class
 com/upgrad/FoodOrderingApp/service/businness/JwtTokenProvider.class
 com/upgrad/FoodOrderingApp/service/exception/ItemNotFoundException.class
 com/upgrad/FoodOrderingApp/service/exception/RestaurantNotFoundException.class
@@ -21,7 +24,9 @@ com/upgrad/FoodOrderingApp/service/businness/RestaurantService.class
 com/upgrad/FoodOrderingApp/service/entity/RestaurantEntity.class
 com/upgrad/FoodOrderingApp/service/exception/InvalidRatingException.class
 com/upgrad/FoodOrderingApp/service/common/UnexpectedException.class
+com/upgrad/FoodOrderingApp/service/dao/ItemDao.class
 com/upgrad/FoodOrderingApp/service/businness/PaymentService.class
+com/upgrad/FoodOrderingApp/service/dao/PaymentDao.class
 com/upgrad/FoodOrderingApp/service/dao/RestaurantDao.class
 com/upgrad/FoodOrderingApp/service/util/PasswordValidator.class
 com/upgrad/FoodOrderingApp/service/entity/OrderItem.class

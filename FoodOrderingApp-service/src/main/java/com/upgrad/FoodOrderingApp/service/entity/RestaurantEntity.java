@@ -14,7 +14,7 @@ import java.util.Set;
 @Entity
 @Table(name = "restaurant", schema = "public")
 @NamedQueries({
-        @NamedQuery(name = "getAllRestaurants", query = "select r from RestaurantEntity as r")
+        @NamedQuery(name = "getRestaurantByUUID", query = "select r from RestaurantEntity as r where r.uuid=:uuid")
 })
 public class RestaurantEntity {
 
@@ -41,7 +41,7 @@ public class RestaurantEntity {
 
     @Column(name = "customer_rating")
     @NotNull
-    private Integer customerRating;
+    private Double customerRating;
 
     @OneToOne
     @NotNull
@@ -131,11 +131,11 @@ public class RestaurantEntity {
         this.photo_url = photo_url;
     }
 
-    public Integer getCustomerRating() {
+    public Double getCustomerRating() {
         return customerRating;
     }
 
-    public void setCustomerRating(Integer customerRating) {
+    public void setCustomerRating(Double customerRating) {
         this.customerRating = customerRating;
     }
 }

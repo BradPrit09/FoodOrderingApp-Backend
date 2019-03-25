@@ -15,6 +15,8 @@ com/upgrad/FoodOrderingApp/api/model/AddressList.class
 com/upgrad/FoodOrderingApp/api/model/ItemList$ItemTypeEnum.class
 com/upgrad/FoodOrderingApp/api/model/CustomerOrderResponse.class
 com/upgrad/FoodOrderingApp/api/model/ItemQuantityResponseItem$TypeEnum.class
+com/upgrad/FoodOrderingApp/api/controller/ItemController.class
+com/upgrad/FoodOrderingApp/api/controller/PaymentController.class
 com/upgrad/FoodOrderingApp/api/model/CouponDetailsResponse.class
 com/upgrad/FoodOrderingApp/api/model/SaveAddressRequest.class
 com/upgrad/FoodOrderingApp/api/model/OrderList.class
@@ -23,7 +25,6 @@ com/upgrad/FoodOrderingApp/api/model/RestaurantList.class
 io/swagger/Swagger2SpringBoot.class
 com/upgrad/FoodOrderingApp/api/model/RestaurantDetailsResponseAddressState.class
 com/upgrad/FoodOrderingApp/api/config/SwaggerConfiguration.class
-com/upgrad/FoodOrderingApp/api/controller/Example.class
 com/upgrad/FoodOrderingApp/api/model/ItemQuantityResponse.class
 io/swagger/configuration/SwaggerDocumentationConfig.class
 com/upgrad/FoodOrderingApp/api/controller/RestaurantController.class
@@ -36,6 +37,7 @@ com/upgrad/FoodOrderingApp/api/model/SaveAddressResponse.class
 com/upgrad/FoodOrderingApp/api/FoodOrderingAppApiApplication.class
 com/upgrad/FoodOrderingApp/api/model/AddressListResponse.class
 com/upgrad/FoodOrderingApp/api/model/ItemQuantityResponseItem.class
+com/upgrad/FoodOrderingApp/api/controller/CategoryController.class
 com/upgrad/FoodOrderingApp/api/model/CategoryListResponse.class
 com/upgrad/FoodOrderingApp/api/controller/CustomerController.class
 com/upgrad/FoodOrderingApp/api/model/LogoutResponse.class
