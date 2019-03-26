@@ -47,7 +47,7 @@ public class CustomerController {
      * @throws SignUpRestrictedException exception thrown in case username of email id are same.
      */
     @RequestMapping(method = RequestMethod.POST, path = "/customer/signup", consumes = MediaType.APPLICATION_JSON_UTF8_VALUE, produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<SignupCustomerRequest> signUp(final SignupCustomerRequest signupUserRequest) {
+    public ResponseEntity signUp(final SignupCustomerRequest signupUserRequest) {
         //Set the customer entity object
         CustomerEntity customerEntity = new CustomerEntity();
         customerEntity.setUuid(UUID.randomUUID().toString());
@@ -62,8 +62,8 @@ public class CustomerController {
         try {
             createdCustomerEntity = customerService.saveCustomer(customerEntity);
         } catch (SignUpRestrictedException e) {
-            SignupCustomerResponse customerResponse = new SignupCustomerResponse().id(e.getCode()).status(e.getErrorMessage());
-            return new ResponseEntity(customerResponse, HttpStatus.FORBIDDEN);
+            ErrorResponse response = new ErrorResponse().code(e.getCode()).message(e.getErrorMessage());
+            return new ResponseEntity(response, HttpStatus.FORBIDDEN);
         }
 
         SignupCustomerResponse customerResponse = new SignupCustomerResponse().id(createdCustomerEntity.getUuid()).status(CUSTOMER_SUCCESSFULLY_REGISTERED);
@@ -84,7 +84,7 @@ public class CustomerController {
      */
 
     @RequestMapping(method = RequestMethod.POST, path = "/customer/login", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-    public ResponseEntity<LoginResponse> signin(@RequestHeader final String authorization) {
+    public ResponseEntity signin(@RequestHeader final String authorization) {
         //TypeResolutionContext.Basic dXNlcm5hbWU6cGFzc3dvcmQ =
         //above is a sample encoded text where the username is "username" and password is "password" separated by a ":"
         byte[] decode = null;
@@ -96,9 +96,11 @@ public class CustomerController {
             decodedArray = decodedText.split(":");
         } catch (IllegalArgumentException e) {
 //            throw new AuthenticationFailedException("ATH-003", "Incorrect format of decoded customer name and password");
-            return new ResponseEntity<>(new LoginResponse().id("ATH-003").message("Incorrect format of decoded customer name and password"), new HttpHeaders(), HttpStatus.BAD_REQUEST);
+            ErrorResponse response = new ErrorResponse().code("ATH-003").message("Incorrect format of decoded customer name and password");
+            return new ResponseEntity<>(response, HttpStatus.BAD_REQUEST);
         } catch (ArrayIndexOutOfBoundsException aexp) {
-            return new ResponseEntity<>(new LoginResponse().id("ATH-003").message("Incorrect format of decoded customer name and password"), new HttpHeaders(), HttpStatus.BAD_REQUEST);
+            ErrorResponse response = new ErrorResponse().code("ATH-003").message("Incorrect format of decoded customer name and password");
+            return new ResponseEntity(response, HttpStatus.BAD_REQUEST);
         }
         CustomerAuthEntity custAuthToken = null;
         try {

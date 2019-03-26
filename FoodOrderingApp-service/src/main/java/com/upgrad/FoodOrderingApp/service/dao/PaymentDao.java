@@ -5,10 +5,12 @@ import com.upgrad.FoodOrderingApp.service.entity.PaymentEntity;
 import org.springframework.stereotype.Repository;
 
 import javax.persistence.EntityManager;
+import javax.persistence.NoResultException;
 import javax.persistence.PersistenceContext;
 import javax.persistence.Query;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Repository
 public class PaymentDao {
@@ -25,5 +27,15 @@ public class PaymentDao {
             newList.add((PaymentEntity) newObj);
         }
         return newList;
+    }
+
+    public PaymentEntity checkPayment(UUID paymentId) {
+        try {
+            return entityManager.createNamedQuery("getPaymentByUUid", PaymentEntity.class)
+                    .setParameter("uuid", paymentId.toString())
+                    .getSingleResult();
+        } catch (NoResultException e) {
+            return null;
+        }
     }
 }
