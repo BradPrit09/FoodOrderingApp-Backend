@@ -3,7 +3,7 @@
 
 [![N|Solid](https://i0.wp.com/flixtel.in/wp-content/uploads/2018/02/cropped-mpls-new-1.png?resize=150%2C150)](https://www.upgrad.com/)
 
-[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/BradPrit09/Quora-Demo.git)
+[![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/BradPrit09/FoodOrderingApp-Backend.git)
 
 In this project, we will be developing from scratch REST API endpoints of various functionalities required for the web app FoodOrderingApp. In order to observe the functionalities of the endpoints, we will create the FoodOrderingApp UI using React to interact with and store the data in the PostgreSQL database. In order to observe the functionality of the endpoints, we will use the Swagger user interface and store the data in the PostgreSQL database. Also, the project has to be implemented using Java Persistence API (JPA).
 
@@ -53,11 +53,7 @@ And of course Quora API itself is open source with a [public repository](https:/
 
 ### Installation
 
-This project  requires Database Schema 
-![GitHub Logo](/images/logo.png)
-Format: ![Alt Text](url)
-
-
+This project  requires Database Setup .
 
 
 
