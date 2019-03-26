@@ -70,20 +70,20 @@ This project  requires Database Setup .
 
  6.You may configure the database in the Spring Boot project by making the required changes in the following instructions of the 'application.properties' file:
 
-spring.datasource.url= jdbc:postgresql://localhost:<port>/restaurantdb
-spring.datasource.customername=<username>
-spring.datasource.password=<password>
+  spring.datasource.url= jdbc:postgresql://localhost:<port>/restaurantdb
+  spring.datasource.customername=<username>
+  spring.datasource.password=<password>
  
-You also need to make changes in the localhost.properties file:
-server.port=<port>
+  You also need to make changes in the localhost.properties file:
+   server.port=<port>
 
-server.host=localhost
+   server.host=localhost
+ 
+   database.name=restaurantdb
 
-database.name=restaurantdb
+   database.customer=<username>
 
-database.customer=<username>
-
-database.password=<password>
+   database.password=<password>
 
 
 7.Goto file FoodOrderingApp-Backend, right click and run it as a Java application. 
