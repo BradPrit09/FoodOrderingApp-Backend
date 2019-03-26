@@ -11,7 +11,7 @@ In this project, we will be developing from scratch REST API endpoints of variou
  
 # New Features!
 The following API endpoints are  implemented in respective classes:
-  - signup - "/customer/signup" This endpoint is used to register a new user in the web Application.
+  - # signup - "/customer/signup" This endpoint is used to register a new user in the web Application.
   - login- "/customer/login" This endpoint is used for user authentication.Customer authenticates in the application and after successful authentication, JWT token is given to a customer.
   - logout - "/customer/logout" This endpoint is used to sign out from the web Application.
   - Update - “/customer” This endpoint requests for all the attributes in “UpdateCustomerRequest” about the customer.
