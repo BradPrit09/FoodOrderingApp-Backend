@@ -44,7 +44,7 @@ The following API endpoints are  implemented in respective classes:
 
 Quora API uses a number of open source projects to work properly:
 
-* [IntelliJ IDEA](https://www.jetbrains.com/idea/) or for development.
+* [IntelliJ IDEA](https://www.jetbrains.com/idea/)
 * [Java](https://www.java.com/en/download/)
 * [Git](https://git-scm.com/downloads)
 
