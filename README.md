@@ -1,7 +1,6 @@
 # FoodOrderingApp-Backend
 # REST API Endpoints
 
-[![N|Solid](https://i0.wp.com/flixtel.in/wp-content/uploads/2018/02/cropped-mpls-new-1.png?resize=150%2C150)](https://www.upgrad.com/)
 
 [![Build Status](https://travis-ci.org/joemccann/dillinger.svg?branch=master)](https://github.com/BradPrit09/FoodOrderingApp-Backend.git)
 
